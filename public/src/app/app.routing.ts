@@ -11,6 +11,7 @@ import { SidebarComponent } from './components/profile/sidebar/sidebar.component
 import { PostsComponent } from './components/profile/posts/posts.component';
 import { EditprofileComponent } from './components/profile/editprofile/editprofile.component';
 import { NotfoundComponent } from './components/profile/notfound/notfound.component';
+import { FriendProfileComponent } from './components/profile/friend-profile/friend-profile.component';
 
 const appRoutes: Routes=
 [  
@@ -23,7 +24,8 @@ const appRoutes: Routes=
   { path:'profile', component: ProfileComponent,
        children : [
          { path: '',component : PostsComponent},
-         { path: 'editprofile', component: EditprofileComponent }
+         { path: 'editprofile', component: EditprofileComponent },
+         { path: 'friendprofile', component: FriendProfileComponent }
        ] 
   }
 ]

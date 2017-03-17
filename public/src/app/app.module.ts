@@ -18,6 +18,7 @@ import { PostsComponent } from './components/profile/posts/posts.component';
 import { EditprofileComponent } from './components/profile/editprofile/editprofile.component';
 import { NotfoundComponent } from './components/profile/notfound/notfound.component';
 import { AppService } from './app.service';
+import { FriendProfileComponent } from './components/profile/friend-profile/friend-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { AppService } from './app.service';
     SidebarComponent,
     PostsComponent,
     EditprofileComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    FriendProfileComponent
   ],
   imports: [
     BrowserModule,
