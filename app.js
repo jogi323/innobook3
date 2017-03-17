@@ -16,6 +16,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var search = require('./routes/search');
 var userprofile = require('./routes/userprofile');
+var posts = require('./routes/posts');
 
 // initializing and configuring the Node/Express server
 var app = express();
@@ -47,6 +48,7 @@ app.use('/register', register);
 app.use('/dashboard', dashboard);
 app.use('/search',search);
 app.use('/userprofile',userprofile);
+app.use('/posts',posts);
 app.get('*',function(req,res){
 		res.redirect('/');
 	})

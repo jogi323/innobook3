@@ -14,6 +14,7 @@ var userregisterSchema = mongoose.Schema({
     profilePic: String,
     description: String,
     hobbies: String,
+    posts : [{post : String}]
 });
 
 var user = mongoose.model("register",userregisterSchema);

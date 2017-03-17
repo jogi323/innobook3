@@ -4,10 +4,12 @@
 	var bodyParser = require('body-parser');
 	var user_database = require('./connection.js');
 	var freiend_database = require('./requestSchema.js');
+
 	//var urlencodedParser = bodyParser.urlencoded({ extended: false });
 	//app.use(bodyParser.urlencoded());
 	var UserRegister = user_database ;
-	var friendrequests = freiend_database;
+	var friendrequests = freiend_database.friendrequests;
+	var post = freiend_database.postschema;
 	// app.get('/',function(req,res){
 	// 	res.render('login',{'message':''});
 	// })
@@ -305,6 +307,34 @@ exports.friendsAndRequests = function(req,res){
     
     
 }
+
+exports.posts = function(req,res){
+	console.log(req.body.text);
+	var postt = new post({
+		post :req.body.text,
+		email:req.body.email
+	});
+	postt.save(function(err,data){
+		if(err){
+			res.json("err");
+		}
+		else{
+			res.json(data);
+		}
+	})
+}
+
+exports.getposts = function(req,res){
+	post.find(function(err,data){
+		if(err){
+			res.json("err");
+		}
+		else{
+			res.json(data);
+		}
+	})
+}
+
 exports.logOut = function(req,res){
 delete req.sessionId;
 //   res.redirect('/login');

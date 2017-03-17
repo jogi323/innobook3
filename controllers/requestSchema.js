@@ -10,4 +10,11 @@ var requestSchema = mongoose.Schema({
 
 
 var friendrequests = mongoose.model("friendrequests",requestSchema);
-module.exports = friendrequests;
+
+var posts =  mongoose.Schema({
+	post :String,
+	email:String
+});
+
+var postschema = mongoose.model("posts",posts);
+module.exports = {postschema,friendrequests};
