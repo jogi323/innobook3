@@ -8,6 +8,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var passport=require("passport");
+var flash=require("connect-flash");
 var cors = require("cors");
 
 // backend controllers, local
@@ -33,6 +35,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 // app.use(express.static('./public'));
@@ -48,11 +59,11 @@ app.use('/register', register);
 app.use('/dashboard', dashboard);
 app.use('/search',search);
 app.use('/userprofile',userprofile);
-app.use('/posts',posts);
-app.get('*',function(req,res){
-		res.redirect('/');
-	})
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 6000000 }}));
+app.use('/post',posts);
+// app.get('*',function(req,res){
+// 		res.redirect('/');
+// 	})
+// app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 6000000 }}));
 // catch 404 and forward to error handler
 /*app.use(function(req, res, next) {
   var err = new Error('Not Found');

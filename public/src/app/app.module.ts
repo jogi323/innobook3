@@ -18,7 +18,9 @@ import { PostsComponent } from './components/profile/posts/posts.component';
 import { EditprofileComponent } from './components/profile/editprofile/editprofile.component';
 import { NotfoundComponent } from './components/profile/notfound/notfound.component';
 import { AppService } from './app.service';
+import { searchService } from './app.search';
 import { FriendProfileComponent } from './components/profile/friend-profile/friend-profile.component';
+import { FriendslistComponent } from './components/profile/friendslist/friendslist.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { FriendProfileComponent } from './components/profile/friend-profile/frie
     PostsComponent,
     EditprofileComponent,
     NotfoundComponent,
-    FriendProfileComponent
+    FriendProfileComponent,
+    FriendslistComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { FriendProfileComponent } from './components/profile/friend-profile/frie
     HttpModule,
     routing
   ],
-  providers: [AppService],
+  providers: [AppService, searchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

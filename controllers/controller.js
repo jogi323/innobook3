@@ -10,47 +10,6 @@
 	var UserRegister = user_database ;
 	var friendrequests = freiend_database.friendrequests;
 	var post = freiend_database.postschema;
-	// app.get('/',function(req,res){
-	// 	res.render('login',{'message':''});
-	// })
-	
-	// app.post('/login',function(req,res){
-	// 	username = req.body.email;
-	// 	var password = req.body.pwd;
-	// 	UserRegister.find({$and: [{email: username}, {password:password}]}, function (err, docs) {
-	// 		console.log(docs);
-	// 		if(err){
-	// 			console.log(err);
-	// 		}
-	// 		else if( docs[0] == null ){
-	// 			console.log("invalid");
-	// 			res.json({message:'InValid Username and Password'});
-	// 		}else{
-	// 			req.session.username = username;
-	// 			res.json({success: "sucess login"});
-	// 		}
-    //     });
-	// })
-	
-	// app.get('/dashboard',function(req,res){
-	// 	if(req.session.username){
-	// 		res.render('dashboard');
-	// 	}else{
-	// 		res.redirect('/');
-	// 	}
-		
-	// })
-	
-	// app.get('/register',function(req,res){
-	// 	res.render('register',{'message':''});
-	// })
-	
-	// app.post('/register',function(req,res){
-		// console.log("earewrewerwerwrwe*************************");
-
-// var mongoose = require('mongoose');
-// var user = require('./connection.js');
-// var UserRegister = user;
 exports.insertUser = function(req, res){
 		console.log("insert user called");
 		console.log(req.body);
@@ -87,6 +46,9 @@ exports.insertUser = function(req, res){
 					// 	success:"register success"
 					// })
 					res.json(1);
+					// req.session.Id=userDetails;
+					// console.log(req.session);
+					// console.log(req.session.Id);
 						//res.send("hello");
 					}
 		        });
@@ -96,46 +58,18 @@ exports.insertUser = function(req, res){
 			}else{
 				//res.render('register',{'message':'Usermail already exists try with another'});
 				// res.json({'message':'Usermail already exists try with another'});
-				res.json(0)
+				res.json(0);
 		}
 		
 		 });
 
 
 }
-	
-	// app.post("/saveChanges",function(req,res){
-
-
-	// });
-	
-	// app.get('*',function(req,res){
-	// 	res.redirect('/');
-	// });
-
-
-
 
 exports.validateUser = function(req, res){
-
-    /*var username = req.body.email;
-		var password = req.body.pwd;
-		UserRegister.find({$and: [{'email': username}, {'password':password}]}, function (err, docs) {
-			console.log(docs.length);
-			if(err){
-				console.log(err);
-			}
-			else if( docs[0] == "" ){
-				// res.render('login',{message:'InValid Username and Password'});
-				res.json({msg:"wrong credentials"});
-			}else{
-				req.sessionId = username;
-				// res.redirect('/dashboard');
-				res.json({msg:"success"});
-			}
-        });*/
         username = req.body.email;
 		  var password = req.body.pwd;
+		  console.log(req.session.Id);
 		  UserRegister.find({$and: [{email: username}, {password:password}]}, function (err, docs) {
 		   console.log(docs);
 		   if(err){
@@ -144,18 +78,29 @@ exports.validateUser = function(req, res){
 		   else if( docs[0] == null ){
 		    console.log("invalid");
 		    res.json({message:'InValid Username and Password'});
-		   }else{
-		    req.sessionId = username;
-
-		    console.log("req.session",req.sessionId);
-		    res.json({success: "sucess","username":username});
+		   }else{	
+			req.session.Id=docs[0].email;	   
+			console.log(req.session);
+		    res.json({success: "sucess","username":username,"session":req.session});
 		   }
         });
 }
-
+exports.getUserProfile = function(req,res){
+	var email = "jogi3235@gmail.com";
+	
+	console.log(req.session);
+	console.log(req.session.Id);
+	
+	UserRegister.find({'email':email},function(req,docs){
+		//console.log(res);
+    	//res.json(1);
+		res.json({success: "sucess"});
+    })
+}
 
 exports.updateUser = function(req,resp){
 	console.log(req.body.email);
+	
 			var userDetails = new UserRegister({
 	            firstName: req.body.firstname,
 	            lastName:req.body.lastname,
@@ -179,6 +124,8 @@ UserRegister.find({email: req.body.email},function(error,data){
 			{
 				console.log("saved succesfully");
 				resp.json({DATA:data});
+				var user=req.session.Id;
+	console.log(user);
 			}
 		})
 	}
@@ -186,7 +133,7 @@ UserRegister.find({email: req.body.email},function(error,data){
 }
 
 exports.searchUsers = function(req,res){
-	var useremail = req.sessionId;
+	
 	var query = UserRegister.aggregate({$match : {'email': {$ne : useremail}}},{$project : { name: { $concat: [ "$firstName", " ", "$lastName" ] } }});
 
     query.exec(function (err, someValue) {
@@ -197,11 +144,7 @@ exports.searchUsers = function(req,res){
     });
 }
 
-exports.getUserProfile = function(req,res){
-	UserRegister.find({'email':req.sessionId},function(req,res){
-    	res.json({'data':res,msg:"success"});
-    })
-}
+
 
 exports.individualSearch = function(req,res){
 	console.log(req.body.username);
@@ -295,7 +238,6 @@ exports.friendsAndRequests = function(req,res){
     		console.log('each_count',each_count);
     		friend_acc.push(each_count);
     	}
-    	console.log();
 	    var friends_acceptance = {};
 	    friends_acceptance.accept = req_acc;
 	    friends_acceptance.friends = friend_acc;

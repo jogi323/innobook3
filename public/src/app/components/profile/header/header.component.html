@@ -11,8 +11,8 @@
              <form class="navbar-form" role="search">
              <div>
                <label for="users"> </label>
-			<input name="users" id="users" type="text" placeholder="Search a friend" ng-model="selected" typeahead="user._id as user.name for user in users | filter:$viewValue | limitTo:8" class="form-control">
-			<button class="btn btn-primary accept-btn" ng-click="findFriend(selected)">Search</button>
+			<input name="users" type="text" [(ngModel)]="findfriend">
+			<button class="btn btn-primary accept-btn" (click)="findFriend(findfriend)">Search</button>
              </div>
                 <ul id="search-ul">
   					<li id="search-li"><a href="">Adele</a></li>
@@ -23,8 +23,6 @@
   					<li id="search-li"><a href="">Christina</a></li>
   					<li id="search-li"><a href="">Cindy</a></li>
 				</ul>
-              
-                
             </form>
         </div>
         <div class="col-md-4">

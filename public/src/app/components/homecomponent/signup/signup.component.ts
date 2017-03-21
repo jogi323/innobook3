@@ -38,7 +38,7 @@ signupuser(user){
           //  console.log("hjgghjkhikhikuyifu");
              this.router.navigate(["signup"]);
          }else if(this.data == 1){
-            this.router.navigate([""]);
+            this.router.navigate(["signin"]);
              alert('Register Successfully');
          }
 
