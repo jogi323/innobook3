@@ -14,7 +14,7 @@ export class PostsComponent implements OnInit {
       text : '',
       email : 'shaik@gmail.com'
     }
-    this.posts.url = 'http://localhost:3030/posts';
+    this.posts.url = 'http://localhost:3030/post';
   }
 
   ngOnInit() {

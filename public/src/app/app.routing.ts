@@ -12,7 +12,7 @@ import { PostsComponent } from './components/profile/posts/posts.component';
 import { EditprofileComponent } from './components/profile/editprofile/editprofile.component';
 import { NotfoundComponent } from './components/profile/notfound/notfound.component';
 import { FriendProfileComponent } from './components/profile/friend-profile/friend-profile.component';
-
+import { FriendslistComponent } from './components/profile/friendslist/friendslist.component';
 const appRoutes: Routes=
 [  
   { path:'', component: HomeComponent,
@@ -25,6 +25,7 @@ const appRoutes: Routes=
        children : [
          { path: '',component : PostsComponent},
          { path: 'editprofile', component: EditprofileComponent },
+         { path: 'friendslist', component: FriendslistComponent },
          { path: 'friendprofile', component: FriendProfileComponent }
        ] 
   }

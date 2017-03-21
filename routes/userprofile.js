@@ -4,6 +4,7 @@ var controller = require('../controllers/controller')
 
 /* GET home page. */
 router.get('/', function(req, res) {
+	
     controller.getUserProfile(req,res);
 });
 

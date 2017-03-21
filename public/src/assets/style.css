@@ -114,6 +114,7 @@
 
 .panel-white {
   border: 1px solid #dddddd;
+  height: 1000px;
 }
 .panel-white  .panel-heading {
     background-color: #FFFFFF;
@@ -133,7 +134,7 @@
   border-color: #d6e9c6;
 }
 .post .post-heading {
-  height: 95px;
+  height: auto;
   padding: 20px 15px;
 }
 .post .post-heading .avatar {
