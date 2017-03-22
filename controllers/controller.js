@@ -46,9 +46,9 @@ exports.insertUser = function(req, res){
 					// 	success:"register success"
 					// })
 					res.json(1);
-					// req.session.Id=userDetails;
-					// console.log(req.session);
-					// console.log(req.session.Id);
+					 req.session.Id=userDetails;
+					 console.log(req.session);
+					 console.log(req.session.Id);
 						//res.send("hello");
 					}
 		        });

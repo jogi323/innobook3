@@ -1,17 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var controller = require('../controllers/controller')
-
+var controller = require('../controllers/controller');
+var passport=require('../config/passport');
 /* GET home page. */
 router.get('/', function(req, res) {
     res.send("hai");
 });
 
 
-router.post('/login', function(req, res) {
-  if (!req.body) return res.sendStatus(400);
-  controller.validateUser(req,res);
-});
+ router.post('/login',function(req, res) {
+   controller.validateUser(req,res);
+} );
 router.post('/logOut',function(req,res){
     console.log("logOut");
     controller.logOut(req,res);
