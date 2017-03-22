@@ -10,3 +10,19 @@ passport.deserializeUser(function(id,done){
         done(err,user);
     });
 });
+passport.use('local.signin', new localStrategy({
+    usernameField:'email',
+    passwordField:'password',
+    passReqToCallback:true
+},function(req,email,password,done){
+    user.findOne({'email':email},function(err,user){
+        if(err){
+            return done(err);
+        }
+        if(!user){
+            return done(null,false,{msg:"hjguyk"});
+        }else{
+            return done(null,user);
+        }
+    })
+}));

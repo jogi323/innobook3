@@ -60,7 +60,12 @@ app.use('/dashboard', dashboard);
 app.use('/search',search);
 app.use('/userprofile',userprofile);
 app.use('/post',posts);
-// app.get('*',function(req,res){
+
+// // passport config
+// passport.use(new LocalStrategy(Account.authenticate()));
+// passport.serializeUser(Account.serializeUser());
+// passport.deserializeUser(Account.deserializeUser());
+// // app.get('*',function(req,res){
 // 		res.redirect('/');
 // 	})
 // app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 6000000 }}));
